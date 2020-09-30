@@ -1,0 +1,7 @@
+    irmovq $0xACE, %rcx
+    xorq %rbx, %rbx
+    jne not_taken
+    halt
+not_taken:
+    rmmovq %rcx, 0(%rax)
+    halt

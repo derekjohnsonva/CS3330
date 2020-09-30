@@ -1,0 +1,14 @@
+0x000: 30f0ce0a000000000000 |     irmovq $0xACE, %rax
+0x00a: 30f3ce0a000000000000 |     irmovq $0xACE, %rbx
+0x014: 6311                 |     xorq %rcx, %rcx
+0x016: 722200000000000000   |     jl bogus
+0x01f: 2331                 |     cmove %rbx, %rcx
+0x021: 00                   |     halt
+0x022:                      | bogus:
+0x022: 6003                 |     addq %rax, %rbx
+0x024: 10                   |     nop
+0x025: 10                   |     nop
+0x026: 10                   |     nop
+0x027: 10                   |     nop
+0x028: 10                   |     nop
+0x029: 00                   |     halt

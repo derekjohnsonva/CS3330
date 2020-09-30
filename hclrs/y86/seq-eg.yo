@@ -1,0 +1,6 @@
+0x000: 30f30001000000000000 |   irmovq $0x100,%rbx  # %rbx <-- 0x100
+0x00a: 30f20002000000000000 |   irmovq $0x200,%rdx  # %rdx <-- 0x200 //line:arch:seqeg:irmovq2
+0x014: 6023                 |   addq %rdx,%rbx      # %rbx <-- 0x300 CC <-- 000 //line:arch:seqeg:addq
+0x016: 732900000000000000   |   je dest             # Not taken //line:arch:seqeg:je
+0x01f: 40320000000000000000 |   rmmovq %rbx,0(%rdx) # M[0x200] <-- 0x300
+0x029: 00                   | dest: halt

@@ -1,0 +1,9 @@
+0x000: 6300                 | xorq %rax, %rax
+0x002: 50801900000000000000 | mrmovq first(%rax), %r8
+0x00c: 50901b00000000000000 | mrmovq second(%rax), %r9
+0x016: 6089                 | addq %r8, %r9
+0x018: 00                   | halt
+                            | 
+0x019: ab00                 | first:  .word 0xab
+0x01b: ba00                 | second: .word 0xba
+0x01d: cc00                 | third:  .word 0xcc

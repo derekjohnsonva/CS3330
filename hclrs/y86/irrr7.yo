@@ -1,0 +1,2 @@
+0x000: 30f00100000000000000 | irmovq $1, %rax
+0x00a: 2003                 | rrmovq %rax, %rbx

@@ -1,0 +1,5 @@
+irmovq $1, %rax
+irmovq $2, %rcx
+irmovq $34, %rdx
+irmovq $546, %rax
+irmovq $0xfedcba9876543210, %r14

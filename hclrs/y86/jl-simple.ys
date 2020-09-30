@@ -1,0 +1,13 @@
+    irmovq $1, %rcx
+    xorq %rax, %rax
+    jl bogus
+    addq %rcx, %rax
+    jl bogus
+    irmovq $2, %rdx
+    halt
+bogus:
+    nop
+    nop
+    nop
+    nop
+    halt

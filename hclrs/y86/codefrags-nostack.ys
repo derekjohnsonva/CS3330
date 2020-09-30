@@ -1,0 +1,14 @@
+    irmovq $9,  %rdx
+    irmovq $21, %rbx
+    subq %rdx, %rbx        
+    irmovq $128,%rsp       
+    rmmovq %rsp, 100(%rbx) 
+    rmmovq %rdx, 0(%rsp)
+    mrmovq 0(%rsp), %rax
+    je done                
+    jmp proc
+done:
+    halt
+proc:
+    jmp done
+

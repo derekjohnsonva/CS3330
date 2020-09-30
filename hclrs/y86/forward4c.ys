@@ -1,0 +1,12 @@
+xorq %rax, %rax
+mrmovq first(%rax), %r8
+mrmovq second(%rax), %r9
+nop
+nop
+nop
+addq %r8, %r9
+halt
+
+first:  .word 0xab
+second: .word 0xba
+third:  .word 0xcc

@@ -1,0 +1,14 @@
+    irmovq $9,  %rdx
+    irmovq $21, %rbx
+    subq %rdx, %rbx        
+    irmovq $128,%rsp       
+    rmmovq %rsp, 100(%rbx) 
+    pushq %rdx            
+    popq  %rax             
+    je done                
+    call proc              
+done:
+    halt
+proc:
+    ret                   
+

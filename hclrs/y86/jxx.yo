@@ -1,0 +1,10 @@
+0x000: 30f00300000000000000 |     irmovq $3, %rax
+0x00a: 30f3ffffffffffffffff |     irmovq $-1, %rbx
+0x014:                      | a:
+0x014: 702700000000000000   |     jmp b
+0x01d:                      | c:
+0x01d: 751400000000000000   |     jge a
+0x026: 00                   |     halt
+0x027:                      | b:
+0x027: 6030                 |     addq %rbx, %rax
+0x029: 701d00000000000000   |     jmp c

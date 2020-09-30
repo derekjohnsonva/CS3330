@@ -1,0 +1,4 @@
+    irmovq $50,%rax 	//line:arch:frag:irmovq
+    addq %rax,%rbx 	//line:arch:frag:addq
+    mrmovq 100(%rbx),%rdx //line:arch:frag:mrmovq
+    halt

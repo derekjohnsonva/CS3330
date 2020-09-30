@@ -1,0 +1,17 @@
+xorq %rax, %rax
+mrmovq fourth(%rax), %r8
+mrmovq third(%rax), %r8
+mrmovq second(%rax), %r8
+nop
+addq %r8, %r8
+rmmovq %r8, storageA(%rax)
+rmmovq %r8, storageB(%rax)
+halt
+
+first:  .quad 0xaa
+second: .quad 0xbb
+third:  .quad 0xcc
+fourth:  .quad 0xdd
+
+storageA: .quad 0
+storageB: .quad 0

@@ -1,0 +1,7 @@
+# prog10
+    irmovq $1,%rax
+    xorq %rsp,%rsp        # Set stack pointer to 0 and CC to 100
+    pushq %rax            # Write to 0xfffffffffffffff8
+    addq  %rax,%rax       # 
+    irmovq $2, %rax       #
+    irmovq $3, %rax       # 

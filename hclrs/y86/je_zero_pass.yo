@@ -1,0 +1,9 @@
+0x000: 30f6ad0b000000000000 | 	irmovq $0xbad, %rsi
+0x00a: 30f9ad0b000000000000 | 	irmovq $0xbad, %r9
+0x014: 6369                 | 	xorq %rsi, %r9
+0x016: 732a00000000000000   | 	je cond_met
+0x01f: 30f9ad0b000000000000 | 	irmovq $0xbad, %r9
+0x029: 00                   | 	halt
+0x02a:                      | cond_met:
+0x02a: 2096                 | 	rrmovq %r9, %rsi
+0x02c: 00                   | 	halt

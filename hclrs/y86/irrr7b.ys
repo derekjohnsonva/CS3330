@@ -1,0 +1,7 @@
+irmovq $1, %rax
+irmovq $2, %rbx
+irmovq $3, %rcx
+rrmovq %rax, %rdx
+rrmovq %rcx, %rbx
+rrmovq %rbx, %rsi
+rrmovq %rbx, %rdi

@@ -1,0 +1,17 @@
+0x000: 6300                 | xorq %rax, %rax
+0x002: 50804700000000000000 | mrmovq fourth(%rax), %r8
+0x00c: 50803f00000000000000 | mrmovq third(%rax), %r8
+0x016: 10                   | nop
+0x017: 10                   | nop
+0x018: 6088                 | addq %r8, %r8
+0x01a: 40804f00000000000000 | rmmovq %r8, storageA(%rax)
+0x024: 40805700000000000000 | rmmovq %r8, storageB(%rax)
+0x02e: 00                   | halt
+                            | 
+0x02f: aa00000000000000     | first:  .quad 0xaa
+0x037: bb00000000000000     | second: .quad 0xbb
+0x03f: cc00000000000000     | third:  .quad 0xcc
+0x047: dd00000000000000     | fourth:  .quad 0xdd
+                            | 
+0x04f: 0000000000000000     | storageA: .quad 0
+0x057: 0000000000000000     | storageB: .quad 0

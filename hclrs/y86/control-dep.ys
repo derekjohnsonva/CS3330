@@ -1,0 +1,8 @@
+    irmovq $10, %rbx
+loop:
+    subq %rdx,%rbx //line:arch:frag:subq
+    jne targ	//line:arch:frag:jne
+    irmovq $10,%rdx //line:arch:frag:irmovq2
+    jmp loop
+targ:
+    halt //line:arch:frag:halt

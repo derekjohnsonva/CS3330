@@ -1,0 +1,10 @@
+    irmovq $3, %rax
+    irmovq $-1, %rbx
+a:
+    jmp b
+c:
+    jge a
+    halt
+b:
+    addq %rbx, %rax
+    jmp c

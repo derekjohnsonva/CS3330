@@ -1,0 +1,14 @@
+    irmovq $0xACE, %rax
+    irmovq $0xACE, %rbx
+    xorq %rcx, %rcx
+    jl bogus
+    cmove %rbx, %rcx
+    halt
+bogus:
+    addq %rax, %rbx
+    nop
+    nop
+    nop
+    nop
+    nop
+    halt

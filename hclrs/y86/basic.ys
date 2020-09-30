@@ -1,0 +1,5 @@
+  irmovq  $1,%rax  # I1
+  irmovq  $2,%rbx  # I2
+  irmovq  $3,%rcx  # I3
+  irmovq  $4,%rdx  # I4
+  halt             # I5

@@ -1,0 +1,8 @@
+0x000: 30f30a00000000000000 |     irmovq $10, %rbx
+0x00a:                      | loop:
+0x00a: 6123                 |     subq %rdx,%rbx //line:arch:frag:subq
+0x00c: 742800000000000000   |     jne targ	//line:arch:frag:jne
+0x015: 30f20a00000000000000 |     irmovq $10,%rdx //line:arch:frag:irmovq2
+0x01f: 700a00000000000000   |     jmp loop
+0x028:                      | targ:
+0x028: 00                   |     halt //line:arch:frag:halt

@@ -1,0 +1,9 @@
+0x000: 30f12143000000000000 | 	irmovq $0x4321, %rcx
+0x00a: 30fa3412000000000000 | 	irmovq $0x1234, %r10
+0x014: 611a                 | 	subq %rcx, %r10
+0x016: 732a00000000000000   | 	je cond_met
+0x01f: 30fa2143000000000000 | 	irmovq $0x4321, %r10
+0x029: 00                   | 	halt
+0x02a:                      | cond_met:
+0x02a: 20a1                 | 	rrmovq %r10, %rcx
+0x02c: 00                   | 	halt

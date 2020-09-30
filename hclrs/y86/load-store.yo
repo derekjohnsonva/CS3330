@@ -1,0 +1,6 @@
+0x000: 50210000000000000000 |     mrmovq 0(%rcx),%rdx   # Load  1
+0x00a: a02f                 |     pushq  %rdx           # Store 1
+0x00c: 10                   |     nop
+0x00d: b02f                 |     popq %rdx             # Load  2
+0x00f: 40020000000000000000 |     rmmovq %rax,0(%rdx)   # Store 2
+0x019: 00                   |     halt

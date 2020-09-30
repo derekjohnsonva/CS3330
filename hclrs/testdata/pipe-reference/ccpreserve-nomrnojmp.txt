@@ -1,0 +1,14 @@
++----------------------- halted in state: ------------------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:           abcabc |
+| R12:           abcabc   R13:           abcabc   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++--------------------- (end of halted state) ---------------------------+
+Cycles run: 19

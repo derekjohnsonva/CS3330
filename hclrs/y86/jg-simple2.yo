@@ -1,0 +1,15 @@
+0x000: 30f10100000000000000 |     irmovq $1, %rcx
+0x00a: 6300                 |     xorq %rax, %rax
+0x00c: 762000000000000000   |     jg bogus
+0x015:                      | L1:
+0x015: 6010                 |     addq %rcx, %rax
+0x017: 764900000000000000   |     jg L2
+0x020:                      | bogus:
+0x020: 30f8ad0b000000000000 |     irmovq $0xBAD, %r8
+0x02a: 30f9ad0b000000000000 |     irmovq $0xBAD, %r9
+0x034: 30faad0b000000000000 |     irmovq $0xBAD, %r10
+0x03e: 30fbad0b000000000000 |     irmovq $0xBAD, %r11
+0x048: 00                   |     halt
+0x049:                      | L2:
+0x049: 30f20200000000000000 |     irmovq $2, %rdx
+0x053: 00                   |     halt

@@ -1,0 +1,7 @@
+    irmovq 0xbad, %rax
+    jmp A
+    irmovq 0xbad, %rbx
+    halt
+A:
+    irmovq 0xace, %rax
+    halt

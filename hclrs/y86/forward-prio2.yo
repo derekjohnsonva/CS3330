@@ -1,0 +1,6 @@
+0x000: 30f9ab00000000000000 | irmovq $0xab, %r9
+0x00a: 30f9ac00000000000000 | irmovq $0xac, %r9
+0x014: 30f9ad00000000000000 | irmovq $0xad, %r9
+0x01e: 30f0ae00000000000000 | irmovq $0xae, %rax
+0x028: 6099                 | addq %r9, %r9
+0x02a: 00                   | halt

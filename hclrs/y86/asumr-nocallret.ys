@@ -1,0 +1,76 @@
+# Execution begins at address 0 
+	.pos 0 
+	irmovq $stack, %rsp  	# Set up stack pointer  
+        irmovq $8, %r14         # Use R14 to hold the constant 8 to avoid reloading it
+        xorq %r12, %r12         # Use R12 to hold the constnat 0 to avoid reloading it
+	jmp main		# Execute main program
+after_main:
+	halt			# Terminate program 
+
+# Array of 4 elements
+	.align 8 	
+array:	.quad 0x000d000d000d
+	.quad 0x00c000c000c0
+	.quad 0x0b000b000b00
+	.quad 0xa000a000a000
+
+main:	irmovq array,%rdi	
+	irmovq $4,%rsi
+        # call rsum
+            subq %r14, %rsp
+            irmovq $after_main_call_rsum, %r13
+            rmmovq %r13, 0(%rsp)
+            jmp rsum		# rsum(array, 4)
+after_main_call_rsum:
+        jmp after_main
+
+# long rsum(long *start, long count)
+# start in %rdi, count in %rsi
+rsum:
+	xorq %rax,%rax		# Set return value to 0
+	andq %rsi,%rsi		# Set condition codes
+	je     return		# If count == 0, return 0
+
+        # push %rbx
+            subq %r14, %rsp
+            rmmovq %rbx, 0(%rsp)
+
+	mrmovq (%rdi),%rbx	# Get *start
+	irmovq $-1,%r10
+	addq %r10,%rsi		# count--
+	irmovq $8,%r10          
+	addq %r10,%rdi          # start++
+
+        subq %r14, %rsp
+        irmovq $after_rsum_call_rsum, %r13
+        rmmovq %r13, 0(%rsp)
+	jmp rsum
+after_rsum_call_rsum:
+
+	addq %rbx,%rax          # Add *start to sum
+
+        # pop %rbx
+            mrmovq 0(%rsp), %rbx
+            addq %r14, %rsp
+return:
+	jmp simulate_ret
+
+simulate_ret:
+        mrmovq 0(%rsp), %r13
+        irmovq simulate_ret_jmp, %r12
+        rmmovq %r13, 1(%r12)
+        addq %r14, %rsp
+        # many nops to ensure modified jmp instuction is not in pipeline already
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+simulate_ret_jmp:
+        jmp 0x0
+
+# The stack starts here and grows to lower addresses
+	.pos 0x200		
+stack:	 
+

@@ -1,0 +1,4 @@
+0x000: 30f03200000000000000 |     irmovq $50,%rax 	//line:arch:frag:irmovq
+0x00a: 6003                 |     addq %rax,%rbx 	//line:arch:frag:addq
+0x00c: 50236400000000000000 |     mrmovq 100(%rbx),%rdx //line:arch:frag:mrmovq
+0x016: 00                   |     halt

@@ -1,0 +1,5 @@
+0x000: 30f9ba00000000000000 | irmovq $0xba, %r9
+0x00a: 30f8ab00000000000000 | irmovq $0xab, %r8
+0x014: 10                   | nop
+0x015: 6089                 | addq %r8, %r9
+0x017: 00                   | halt

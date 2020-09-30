@@ -1,0 +1,6 @@
+irmovq $0xab, %r9
+irmovq $0xac, %r9
+irmovq $0xad, %r9
+irmovq $0xae, %rax
+addq %r9, %r9
+halt

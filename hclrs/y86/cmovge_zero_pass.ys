@@ -1,0 +1,5 @@
+irmovq $0xbad, %rsi
+irmovq $0xbad, %r9
+xorq %rsi, %r9
+cmovge %r9, %rsi
+halt

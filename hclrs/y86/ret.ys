@@ -1,0 +1,8 @@
+    irmovq $256, %rsp
+    irmovq a, %rbx
+    rmmovq %rbx, (%rsp)
+    ret
+    halt
+a:
+    irmovq $258, %rax
+    halt

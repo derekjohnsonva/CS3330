@@ -1,0 +1,6 @@
+0x000: 30f10100000000000000 |     irmovq $1, %rcx
+0x00a: 6300                 |     xorq %rax, %rax
+0x00c: 2618                 |     cmovg %rcx, %r8
+0x00e: 6010                 |     addq %rcx, %rax
+0x010: 2619                 |     cmovg %rcx, %r9
+0x012: 00                   |     halt

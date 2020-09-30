@@ -1,0 +1,21 @@
+    irmovq $0xBADBAD, %rbx
+    irmovq $0xABCABC, %rcx
+# deliberately set condition codes to non-ZF
+    addq %rbx, %rax
+# set conditions codes to ZF=1, SF=0
+    xorq %rax, %rax
+# do many things that must not change condition codes
+    irmovq $-20, %r9
+    irmovq $0x1234, %r10
+    rrmovq %r10, %r11
+    nop
+# now use condition codes
+    cmovne %rbx, %r8
+    cmovl %rbx, %r9
+    cmovg %rbx, %r10
+    cmove %rcx, %r11
+    cmovle %rcx, %r12
+    cmovge %rcx, %r13
+    halt
+
+neg20: .quad -20

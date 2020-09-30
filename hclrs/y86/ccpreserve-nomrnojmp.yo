@@ -1,0 +1,21 @@
+0x000: 30f3addbba0000000000 |     irmovq $0xBADBAD, %rbx
+0x00a: 30f1bccaab0000000000 |     irmovq $0xABCABC, %rcx
+                            | # deliberately set condition codes to non-ZF
+0x014: 6030                 |     addq %rbx, %rax
+                            | # set conditions codes to ZF=1, SF=0
+0x016: 6300                 |     xorq %rax, %rax
+                            | # do many things that must not change condition codes
+0x018: 30f9ecffffffffffffff |     irmovq $-20, %r9
+0x022: 30fa3412000000000000 |     irmovq $0x1234, %r10
+0x02c: 20ab                 |     rrmovq %r10, %r11
+0x02e: 10                   |     nop
+                            | # now use condition codes
+0x02f: 2438                 |     cmovne %rbx, %r8
+0x031: 2239                 |     cmovl %rbx, %r9
+0x033: 263a                 |     cmovg %rbx, %r10
+0x035: 231b                 |     cmove %rcx, %r11
+0x037: 211c                 |     cmovle %rcx, %r12
+0x039: 251d                 |     cmovge %rcx, %r13
+0x03b: 00                   |     halt
+                            | 
+0x03c: ecffffffffffffff     | neg20: .quad -20

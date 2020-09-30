@@ -1,0 +1,3 @@
+irmovq $3, %rax
+irmovq $256, %rsp
+pushq %rax

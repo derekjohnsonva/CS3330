@@ -1,0 +1,9 @@
+    irmovq $5, %rdx
+    irmovq $0x100,%rsp
+    rmmovq %rdx,0(%rsp)
+    popq %r8
+    nop
+    nop
+    rrmovq %r8,%rax
+    rrmovq %rsp,%rbx
+    halt

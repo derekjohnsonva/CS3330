@@ -1,0 +1,4 @@
+irmovq $5678, %rax
+irmovq $34, %rcx
+rrmovq %rax, %rdx
+rrmovq %rcx, %rax

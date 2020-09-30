@@ -1,0 +1,7 @@
+0x000: 30f0ad0b000000000000 |     irmovq 0xbad, %rax
+0x00a: 701e00000000000000   |     jmp A
+0x013: 30f3ad0b000000000000 |     irmovq 0xbad, %rbx
+0x01d: 00                   |     halt
+0x01e:                      | A:
+0x01e: 30f0ce0a000000000000 |     irmovq 0xace, %rax
+0x028: 00                   |     halt

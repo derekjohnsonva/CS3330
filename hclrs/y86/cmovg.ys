@@ -1,0 +1,6 @@
+    irmovq $1, %rcx
+    xorq %rax, %rax
+    cmovg %rcx, %r8
+    addq %rcx, %rax
+    cmovg %rcx, %r9
+    halt

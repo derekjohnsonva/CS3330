@@ -1,0 +1,32 @@
+Running command ./lapack-sgesv-f8f
+category                                                                                          issued         %   in program         %
+unknown/ignored instructions                                                                         438     0.000          113     0.010
+total instructions                                                                             980942808   100.000      1154706   100.000
+non-mov instructions with two operands                                                         828337274    84.443       501293    43.413
+non-mov instructions with two register operands                                                361496645    36.852       191336    16.570
+register-to-register unconditional movs                                                          9958254     1.015        77103     6.677
+register-to-register conditional movs                                                             548008     0.056         4595     0.398
+instructions that write memory                                                                 106671051    10.874       217808    18.863
+non-mov/cmov/push instructions that write memory                                                92030972     9.382        78377     6.788
+instructions that read memory                                                                  338538093    34.511       304785    26.395
+non-mov/cmov/pop instructions that read memory                                                 316705748    32.286       170277    14.746
+instructions both read AND write memory                                                         92031036     9.382        79098     6.850
+conditional jumps                                                                               95279395     9.713       105593     9.145
+indirect (computed) jumps (including virtual calls)                                                  595     0.000         2936     0.254
+unconditional jumps (including calls)                                                             234971     0.024        37337     3.233
+instructions with disp(rXX,rYY) or disp(rXX,rYY,scale) addressing                              177496437    18.094        70098     6.071
+instructions with disp(,rYY,scale) addressing (where scale is not 1)                               17354     0.002         2273     0.197
+instructions with disp(rXX,rYY,scale) or disp(,rYY,scale) addressing (where scale is not 1)      6421056     0.655        26375     2.284
+instructions with constant addresses                                                           103436533    10.545       190516    16.499
+instructions with non-zero immediate                                                           225144977    22.952       437845    37.918
+instructions with non-zero immediate that fits in signed byte                                  221178508    22.548       272724    23.618
+instructions with non-zero immediate that fits in unsigned byte                                223109372    22.744       303796    26.309
+instructions with non-zero immediate that fits in 10 bit signed number                         223154001    22.749       328422    28.442
+instructions with non-zero immediate that fits in 10 bit unsigned number                       223161016    22.750       354686    30.717
+instructions with non-zero immediate that fits in 13 bit signed number                         223173658    22.751       376575    32.612
+instructions with non-zero immediate that fits in 13 bit unsigned number                       223176964    22.751       379862    32.897
+instructions with non-zero immediate that fits in 16 bit signed number                         223206410    22.754       385032    33.345
+instructions with non-zero immediate that fits in 18 bit signed number                         223210760    22.755       389866    33.763
+instructions with non-zero immediate that fits in 20 bit signed number                         223211504    22.755       402366    34.846
+instructions with non-zero immediate that fits in 32 bit signed number                         224393366    22.875       427220    36.998
+instructions with non-zero immediate that fits in 48 bit signed number                         225134179    22.951       431780    37.393

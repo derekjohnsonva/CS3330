@@ -1,0 +1,4 @@
+0x000: 30f29819000000000000 | irmovq $6552,%rdx
+0x00a: 2020                 | rrmovq %rdx,%rax
+0x00c: 6002                 | addq %rax,%rdx
+0x00e: 00                   | halt

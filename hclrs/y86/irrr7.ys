@@ -1,0 +1,2 @@
+irmovq $1, %rax
+rrmovq %rax, %rbx

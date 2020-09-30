@@ -1,0 +1,5 @@
+0x000: 30f6ad0b000000000000 | irmovq $0xbad, %rsi
+0x00a: 30f9ad0b000000000000 | irmovq $0xbad, %r9
+0x014: 6369                 | xorq %rsi, %r9
+0x016: 2696                 | cmovg %r9, %rsi
+0x018: 00                   | halt

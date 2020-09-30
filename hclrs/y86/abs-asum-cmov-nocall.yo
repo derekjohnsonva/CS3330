@@ -1,0 +1,43 @@
+                            | # Modification of asum code to compute absolute values of entries.
+                            | # This version uses a conditional move
+                            | # Execution begins at address 0 
+0x000:                      | 	.pos 0 
+0x000: 703000000000000000   | 	jmp main		# Execute main program
+0x009:                      | after_main:
+0x009: 00                   | 	halt			# Terminate program 
+                            | 
+                            | # Array of 4 elements
+0x010:                      | 	.align 8 	
+0x010: 0d000d000d000000     | array:	.quad 0x0000000d000d000d
+0x018: 40ff3fff3fffffff     | 	.quad 0xffffff3fff3fff40  # -0x000000c000c000c0
+0x020: 000b000b000b0000     | 	.quad 0x00000b000b000b00
+0x028: 0060ff5fff5fffff     | 	.quad 0xffff5fff5fff6000  # -0x0000a000a000a000  
+                            | 
+0x030:                      | main:
+0x030: 30f71000000000000000 | 	irmovq array,%rdi	
+0x03a: 30f60400000000000000 | 	irmovq $4,%rsi
+0x044: 705600000000000000   | 	jmp absSum		# absSum(array, 4)
+0x04d:                      | after_absSum:
+0x04d: 700900000000000000   | 	jmp after_main
+                            | 
+                            | # long absSum(long *start, long count)
+                            | # start in %rdi, count in %rsi
+0x056:                      | absSum:
+0x056: 30f80800000000000000 | 	irmovq $8,%r8           # Constant 8
+0x060: 30f90100000000000000 | 	irmovq $1,%r9	        # Constant 1
+0x06a: 6300                 | 	xorq %rax,%rax		# sum = 0
+0x06c: 6266                 | 	andq %rsi,%rsi		# Set condition codes
+0x06e: 708d00000000000000   | 	jmp  test
+                            | /* $begin abs-sum-cmov-ys */
+0x077:                      | loop:
+0x077: 50a70000000000000000 | 	mrmovq (%rdi),%r10	# x = *start
+0x081: 63bb                 | 	xorq %r11,%r11          # Constant 0
+0x083: 61ab                 | 	subq %r10,%r11		# -x
+0x085: 26ba                 | 	cmovg %r11,%r10		# If -x > 0 then x = -x
+0x087: 60a0                 | 	addq %r10,%rax          # Add to sum
+0x089: 6087                 | 	addq %r8,%rdi           # start++
+0x08b: 6196                 | 	subq %r9,%rsi           # count--
+0x08d:                      | test:
+0x08d: 747700000000000000   | 	jne    loop             # Stop when 0
+                            | /* $end abs-sum-cmov-ys */
+0x096: 704d00000000000000   |         jmp after_absSum

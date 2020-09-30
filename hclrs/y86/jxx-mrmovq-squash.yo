@@ -1,0 +1,10 @@
+0x000: 30f1ce0a000000000000 |     irmovq $0xACE, %rcx
+0x00a: 6333                 |     xorq %rbx, %rbx
+0x00c: 741600000000000000   |     jne not_taken
+0x015: 00                   |     halt
+0x016:                      | not_taken:
+0x016: 50100000000000000000 |     mrmovq 0(%rax), %rcx
+0x020: 10                   |     nop
+0x021: 10                   |     nop
+0x022: 10                   |     nop
+0x023: 00                   |     halt

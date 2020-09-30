@@ -1,0 +1,7 @@
+irmovq $7, %rdx # d =  7  00..00111
+irmovq $3, %rcx # c =  3  00..00011
+addq %rcx, %rbx # b =  3  00..00011
+subq %rdx, %rcx # c = -4  11..11100
+andq %rdx, %rbx # b =  3  00..00011
+xorq %rcx, %rdx # d = -5  11..11011
+andq %rdx, %rsi # s = 0

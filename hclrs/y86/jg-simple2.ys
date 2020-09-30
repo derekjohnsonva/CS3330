@@ -1,0 +1,15 @@
+    irmovq $1, %rcx
+    xorq %rax, %rax
+    jg bogus
+L1:
+    addq %rcx, %rax
+    jg L2
+bogus:
+    irmovq $0xBAD, %r8
+    irmovq $0xBAD, %r9
+    irmovq $0xBAD, %r10
+    irmovq $0xBAD, %r11
+    halt
+L2:
+    irmovq $2, %rdx
+    halt

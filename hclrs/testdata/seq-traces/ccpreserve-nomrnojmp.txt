@@ -1,0 +1,224 @@
++------------------- between cycles    0 and    1 ----------------------+
+| RAX:                0   RCX:                0   RDX:                0 |
+| RBX:                0   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:                 0   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x0; loaded [30 f3 ad db ba 00 00 00 00 00 : irmovq $0xbadbad, %rbx]
++------------------- between cycles    1 and    2 ----------------------+
+| RAX:                0   RCX:                0   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:                 0   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0xa; loaded [30 f1 bc ca ab 00 00 00 00 00 : irmovq $0xabcabc, %rcx]
++------------------- between cycles    2 and    3 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:                 0   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x14; loaded [60 30 : addq %rbx, %rax]
++------------------- between cycles    3 and    4 ----------------------+
+| RAX:           badbad   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:                 0   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x16; loaded [63 00 : xorq %rax, %rax]
++------------------- between cycles    4 and    5 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:                 0   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x18; loaded [30 f9 ec ff ff ff ff ff ff ff : irmovq $0xffffffffffffffec, %r9]
++------------------- between cycles    5 and    6 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:                0   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x22; loaded [30 fa 34 12 00 00 00 00 00 00 : irmovq $0x1234, %r10]
++------------------- between cycles    6 and    7 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:                0 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x2c; loaded [20 ab : rrmovq %r10, %r11]
++------------------- between cycles    7 and    8 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:             1234 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x2e; loaded [10 : nop]
++------------------- between cycles    8 and    9 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:             1234 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x2f; loaded [24 38 : cmovne %rbx, %r8]
++------------------- between cycles    9 and   10 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:             1234 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x31; loaded [22 39 : cmovl %rbx, %r9]
++------------------- between cycles   10 and   11 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:             1234 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x33; loaded [26 3a : cmovg %rbx, %r10]
++------------------- between cycles   11 and   12 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:             1234 |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x35; loaded [23 1b : cmove %rcx, %r11]
++------------------- between cycles   12 and   13 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:           abcabc |
+| R12:                0   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x37; loaded [21 1c : cmovle %rcx, %r12]
++------------------- between cycles   13 and   14 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:           abcabc |
+| R12:           abcabc   R13:                0   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x39; loaded [25 1d : cmovge %rcx, %r13]
++------------------- between cycles   14 and   15 ----------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:           abcabc |
+| R12:           abcabc   R13:           abcabc   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++-----------------------------------------------------------------------+
+pc = 0x3b; loaded [00 : halt]
++----------------------- halted in state: ------------------------------+
+| RAX:                0   RCX:           abcabc   RDX:                0 |
+| RBX:           badbad   RSP:                0   RBP:                0 |
+| RSI:                0   RDI:                0   R8:                 0 |
+| R9:  ffffffffffffffec   R10:             1234   R11:           abcabc |
+| R12:           abcabc   R13:           abcabc   R14:                0 |
+| used memory:   _0 _1 _2 _3  _4 _5 _6 _7   _8 _9 _a _b  _c _d _e _f    |
+|  0x0000000_:   30 f3 ad db  ba 00 00 00   00 00 30 f1  bc ca ab 00    |
+|  0x0000001_:   00 00 00 00  60 30 63 00   30 f9 ec ff  ff ff ff ff    |
+|  0x0000002_:   ff ff 30 fa  34 12 00 00   00 00 00 00  20 ab 10 24    |
+|  0x0000003_:   38 22 39 26  3a 23 1b 21   1c 25 1d 00  ec ff ff ff    |
+|  0x0000004_:   ff ff ff ff                                            |
++--------------------- (end of halted state) ---------------------------+
+Cycles run: 15

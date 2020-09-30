@@ -1,0 +1,4 @@
+0x000: 30f02e16000000000000 | irmovq $5678, %rax
+0x00a: 30f12200000000000000 | irmovq $34, %rcx
+0x014: 2002                 | rrmovq %rax, %rdx
+0x016: 2010                 | rrmovq %rcx, %rax

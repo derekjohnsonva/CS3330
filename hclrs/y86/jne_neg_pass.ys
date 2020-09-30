@@ -1,0 +1,9 @@
+	irmovq $0x4321, %rcx
+	irmovq $0x1234, %r10
+	subq %rcx, %r10
+	jne cond_met
+	irmovq $0x4321, %r10
+	halt
+cond_met:
+	rrmovq %r10, %rcx
+	halt

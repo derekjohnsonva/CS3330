@@ -1,0 +1,14 @@
+0x000: 30f20900000000000000 |     irmovq $9,  %rdx
+0x00a: 30f31500000000000000 |     irmovq $21, %rbx
+0x014: 6123                 |     subq %rdx, %rbx        
+0x016: 30f48000000000000000 |     irmovq $128,%rsp       
+0x020: 40436400000000000000 |     rmmovq %rsp, 100(%rbx) 
+0x02a: a02f                 |     pushq %rdx            
+0x02c: b00f                 |     popq  %rax             
+0x02e: 734000000000000000   |     je done                
+0x037: 804100000000000000   |     call proc              
+0x040:                      | done:
+0x040: 00                   |     halt
+0x041:                      | proc:
+0x041: 90                   |     ret                   
+                            | 

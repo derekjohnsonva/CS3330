@@ -1,0 +1,9 @@
+	irmovq $0xbad, %r9
+	irmovq $0x1111, %rdi
+	addq %r9, %rdi
+	je cond_met
+	irmovq $0xbad, %rdi
+	halt
+cond_met:
+	rrmovq %rdi, %r9
+	halt

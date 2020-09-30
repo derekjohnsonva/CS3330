@@ -1,0 +1,6 @@
+    mrmovq 0(%rcx),%rdx   # Load  1
+    rmmovq %rdx, 0(%rsp)  # Store 1
+    nop
+    mrmovq 0(%rsp), %rdx  # Load  2
+    rmmovq %rax,0(%rdx)   # Store 2
+    halt

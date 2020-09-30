@@ -1,0 +1,9 @@
+mrmovq 0x100(%r8), %rax
+mrmovq (%rax), %rcx
+mrmovq (%rcx), %rdx
+
+.pos 0x100
+.quad 0x200
+
+.pos 0x200
+.quad 0xfe

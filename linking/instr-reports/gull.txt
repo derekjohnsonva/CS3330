@@ -1,0 +1,32 @@
+Running command ./LazyGull-f0 bench 13 rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1
+category                                                                                          issued         %   in program         %
+unknown/ignored instructions                                                                        3383     0.000          141     0.023
+total instructions                                                                            4467170421   100.000       616798   100.000
+non-mov instructions with two operands                                                        2212620642    49.531       257157    41.692
+non-mov instructions with two register operands                                                999526901    22.375       107075    17.360
+register-to-register unconditional movs                                                        360447557     8.069        44935     7.285
+register-to-register conditional movs                                                           70435559     1.577         1973     0.320
+instructions that write memory                                                                 694039854    15.536       104381    16.923
+non-mov/cmov/push instructions that write memory                                               247526627     5.541        32853     5.326
+instructions that read memory                                                                 1178240396    26.376       142973    23.180
+non-mov/cmov/pop instructions that read memory                                                 557651383    12.483        76518    12.406
+instructions both read AND write memory                                                        247526991     5.541        33331     5.404
+conditional jumps                                                                              479090388    10.725        63687    10.325
+indirect (computed) jumps (including virtual calls)                                               673568     0.015         1964     0.318
+unconditional jumps (including calls)                                                           33936315     0.760        23528     3.815
+instructions with disp(rXX,rYY) or disp(rXX,rYY,scale) addressing                              430964245     9.647        30238     4.902
+instructions with disp(,rYY,scale) addressing (where scale is not 1)                             2410961     0.054          695     0.113
+instructions with disp(rXX,rYY,scale) or disp(,rYY,scale) addressing (where scale is not 1)    325641635     7.290         8399     1.362
+instructions with constant addresses                                                           529518835    11.854       116832    18.942
+instructions with non-zero immediate                                                          1900875873    42.552       214899    34.841
+instructions with non-zero immediate that fits in signed byte                                 1085891359    24.308       137979    22.370
+instructions with non-zero immediate that fits in unsigned byte                               1255130984    28.097       150156    24.344
+instructions with non-zero immediate that fits in 10 bit signed number                        1305239610    29.218       153966    24.962
+instructions with non-zero immediate that fits in 10 bit unsigned number                      1309458717    29.313       156537    25.379
+instructions with non-zero immediate that fits in 13 bit signed number                        1362829185    30.508       165962    26.907
+instructions with non-zero immediate that fits in 13 bit unsigned number                      1382702822    30.953       167402    27.140
+instructions with non-zero immediate that fits in 16 bit signed number                        1413897248    31.651       169760    27.523
+instructions with non-zero immediate that fits in 18 bit signed number                        1481269847    33.159       174154    28.235
+instructions with non-zero immediate that fits in 20 bit signed number                        1545147218    34.589       184020    29.835
+instructions with non-zero immediate that fits in 32 bit signed number                        1851778762    41.453       205980    33.395
+instructions with non-zero immediate that fits in 48 bit signed number                        1884700956    42.190       210291    34.094

@@ -1,0 +1,32 @@
+Running command ./blocked-matmul-f0
+category                                                                                          issued         %   in program         %
+unknown/ignored instructions                                                                     6291681     0.039           52     0.013
+total instructions                                                                           16321360049    99.961       398025   100.000
+non-mov instructions with two operands                                                       10301346303    63.091       154474    38.810
+non-mov instructions with two register operands                                               3792747677    23.229        60477    15.194
+register-to-register unconditional movs                                                       1093690323     6.698        33329     8.374
+register-to-register conditional movs                                                                313     0.000         1207     0.303
+instructions that write memory                                                                2188405150    13.403        67805    17.035
+non-mov/cmov/push instructions that write memory                                              2152734510    13.185        16466     4.137
+instructions that read memory                                                                 9719305044    59.527        86107    21.634
+non-mov/cmov/pop instructions that read memory                                                5394943986    33.042        33491     8.414
+instructions both read AND write memory                                                       2152734554    13.185        16939     4.256
+conditional jumps                                                                              550549375     3.372        46271    11.625
+indirect (computed) jumps (including virtual calls)                                                  289     0.000         1670     0.420
+unconditional jumps (including calls)                                                               4206     0.000        15969     4.012
+instructions with disp(rXX,rYY) or disp(rXX,rYY,scale) addressing                             2147499017    13.153        21089     5.298
+instructions with disp(,rYY,scale) addressing (where scale is not 1)                                 138     0.000          545     0.137
+instructions with disp(rXX,rYY,scale) or disp(,rYY,scale) addressing (where scale is not 1)   2147491848    13.152         4721     1.186
+instructions with constant addresses                                                           566283106     3.468        78370    19.690
+instructions with non-zero immediate                                                          8130764217    49.798       146007    36.683
+instructions with non-zero immediate that fits in signed byte                                 4905315204    30.043       100178    25.169
+instructions with non-zero immediate that fits in unsigned byte                               4905318075    30.043       109508    27.513
+instructions with non-zero immediate that fits in 10 bit signed number                        4905318372    30.043       112638    28.299
+instructions with non-zero immediate that fits in 10 bit unsigned number                      4905321469    30.043       114302    28.717
+instructions with non-zero immediate that fits in 13 bit signed number                        4906375480    30.049       122466    30.768
+instructions with non-zero immediate that fits in 13 bit unsigned number                      5443246514    33.338       123557    31.043
+instructions with non-zero immediate that fits in 16 bit signed number                        8127609577    49.778       124339    31.239
+instructions with non-zero immediate that fits in 18 bit signed number                        8127612926    49.778       126880    31.877
+instructions with non-zero immediate that fits in 20 bit signed number                        8127613281    49.778       128835    32.369
+instructions with non-zero immediate that fits in 32 bit signed number                        8130763607    49.798       139493    35.046
+instructions with non-zero immediate that fits in 48 bit signed number                        8130763911    49.798       142563    35.818

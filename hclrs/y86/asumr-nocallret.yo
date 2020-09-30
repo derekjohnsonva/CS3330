@@ -1,0 +1,76 @@
+                            | # Execution begins at address 0 
+0x000:                      | 	.pos 0 
+0x000: 30f40002000000000000 | 	irmovq $stack, %rsp  	# Set up stack pointer  
+0x00a: 30fe0800000000000000 |         irmovq $8, %r14         # Use R14 to hold the constant 8 to avoid reloading it
+0x014: 63cc                 |         xorq %r12, %r12         # Use R12 to hold the constnat 0 to avoid reloading it
+0x016: 704000000000000000   | 	jmp main		# Execute main program
+0x01f:                      | after_main:
+0x01f: 00                   | 	halt			# Terminate program 
+                            | 
+                            | # Array of 4 elements
+0x020:                      | 	.align 8 	
+0x020: 0d000d000d000000     | array:	.quad 0x000d000d000d
+0x028: c000c000c0000000     | 	.quad 0x00c000c000c0
+0x030: 000b000b000b0000     | 	.quad 0x0b000b000b00
+0x038: 00a000a000a00000     | 	.quad 0xa000a000a000
+                            | 
+0x040: 30f72000000000000000 | main:	irmovq array,%rdi	
+0x04a: 30f60400000000000000 | 	irmovq $4,%rsi
+                            |         # call rsum
+0x054: 61e4                 |             subq %r14, %rsp
+0x056: 30fd7300000000000000 |             irmovq $after_main_call_rsum, %r13
+0x060: 40d40000000000000000 |             rmmovq %r13, 0(%rsp)
+0x06a: 707c00000000000000   |             jmp rsum		# rsum(array, 4)
+0x073:                      | after_main_call_rsum:
+0x073: 701f00000000000000   |         jmp after_main
+                            | 
+                            | # long rsum(long *start, long count)
+                            | # start in %rdi, count in %rsi
+0x07c:                      | rsum:
+0x07c: 6300                 | 	xorq %rax,%rax		# Set return value to 0
+0x07e: 6266                 | 	andq %rsi,%rsi		# Set condition codes
+0x080: 73e400000000000000   | 	je     return		# If count == 0, return 0
+                            | 
+                            |         # push %rbx
+0x089: 61e4                 |             subq %r14, %rsp
+0x08b: 40340000000000000000 |             rmmovq %rbx, 0(%rsp)
+                            | 
+0x095: 50370000000000000000 | 	mrmovq (%rdi),%rbx	# Get *start
+0x09f: 30faffffffffffffffff | 	irmovq $-1,%r10
+0x0a9: 60a6                 | 	addq %r10,%rsi		# count--
+0x0ab: 30fa0800000000000000 | 	irmovq $8,%r10          
+0x0b5: 60a7                 | 	addq %r10,%rdi          # start++
+                            | 
+0x0b7: 61e4                 |         subq %r14, %rsp
+0x0b9: 30fdd600000000000000 |         irmovq $after_rsum_call_rsum, %r13
+0x0c3: 40d40000000000000000 |         rmmovq %r13, 0(%rsp)
+0x0cd: 707c00000000000000   | 	jmp rsum
+0x0d6:                      | after_rsum_call_rsum:
+                            | 
+0x0d6: 6030                 | 	addq %rbx,%rax          # Add *start to sum
+                            | 
+                            |         # pop %rbx
+0x0d8: 50340000000000000000 |             mrmovq 0(%rsp), %rbx
+0x0e2: 60e4                 |             addq %r14, %rsp
+0x0e4:                      | return:
+0x0e4: 70ed00000000000000   | 	jmp simulate_ret
+                            | 
+0x0ed:                      | simulate_ret:
+0x0ed: 50d40000000000000000 |         mrmovq 0(%rsp), %r13
+0x0f7: 30fc1301000000000000 |         irmovq simulate_ret_jmp, %r12
+0x101: 40dc0100000000000000 |         rmmovq %r13, 1(%r12)
+0x10b: 60e4                 |         addq %r14, %rsp
+                            |         # many nops to ensure modified jmp instuction is not in pipeline already
+0x10d: 10                   |         nop
+0x10e: 10                   |         nop
+0x10f: 10                   |         nop
+0x110: 10                   |         nop
+0x111: 10                   |         nop
+0x112: 10                   |         nop
+0x113:                      | simulate_ret_jmp:
+0x113: 700000000000000000   |         jmp 0x0
+                            | 
+                            | # The stack starts here and grows to lower addresses
+0x200:                      | 	.pos 0x200		
+0x200:                      | stack:	 
+                            | 
