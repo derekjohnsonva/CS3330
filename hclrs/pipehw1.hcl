@@ -80,15 +80,16 @@ dstM = [
 ];
 
 ### Write to dE register ###
+### Forwarding ###
 d_valA = [
-    reg_srcA == E_dstE  : aluOut;
+    reg_srcA == e_dstE  : aluOut;
     reg_srcA == M_dstE  : M_valE;
     reg_srcA == W_dstE  : W_valE;
     D_icode in {CMOVXX, OPQ} : reg_outputA;
     1 : 0xBADBADBAD;
 ];
 d_valB = [
-    reg_srcB == E_dstE  : aluOut;
+    reg_srcB == e_dstE  : aluOut;
     reg_srcB == M_dstE  : M_valE;
     reg_srcB == W_dstE  : W_valE;
     D_icode in {OPQ} : reg_outputB;
@@ -187,6 +188,3 @@ reg_inputE = W_valE;
 ########## PC and Status updates #############
 
 Stat = W_stat; 
-
-
-
