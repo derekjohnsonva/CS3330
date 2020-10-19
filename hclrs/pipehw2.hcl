@@ -25,7 +25,7 @@ offset = [
 	icode in { JXX, CALL } : 9;
 	1 : 10;
 ];
-valP = F_pc + offset;
+valP = F_predPC + offset;
 f_predPC = [
     icode in {JXX} : valC;
     1 : valP;
@@ -83,23 +83,22 @@ d_dstM = [
 ### Forwarding ###
 d_valA = [
 	reg_srcA == REG_NONE: 0;
-    reg_srcA == e_dstE && E_icode in {IRMOVQ, CMOVXX,OPQ} : aluOut;
-	reg_srcA == m_dstE : m_valE; # forward post-memory
+    D_icode in {CALL, JXX} : D_valP;
+    reg_srcA == e_dstE : e_valE;
+	reg_srcA == M_dstE : M_valE; # forward post-memory
 	reg_srcA == W_dstE : W_valE; # forward pre-writeback
-
-    reg_srcA == e_dstM && E_icode in {IRMOVQ, CMOVXX,OPQ} : aluOut;
-	reg_srcA == m_dstM : m_valM; # forward post-memory
+	reg_srcA == M_dstM : m_valM; # forward post-memory
 	reg_srcA == W_dstM : W_valM; # forward pre-writeback
 	1 : reg_outputA; # returned by register file based on reg_srcA
 ];
 d_valB = [
 	reg_srcB == REG_NONE: 0;
 	# forward from another phase
-    reg_srcB == e_dstE && E_icode in {IRMOVQ, CMOVXX, OPQ} : aluOut;
-	reg_srcB == m_dstE : m_valE; # forward post-memory
+    D_icode in {CALL, JXX} : D_valP;
+    reg_srcB == e_dstE : e_valE;
+	reg_srcB == M_dstE : M_valE; # forward post-memory
 	reg_srcB == W_dstE : W_valE; # forward pre-writeback
-    reg_srcB == e_dstM && E_icode in {IRMOVQ, CMOVXX, OPQ} : aluOut;
-	reg_srcB == m_dstM : m_valM; # forward post-memory
+	reg_srcB == M_dstM : m_valM; # forward post-memory
 	reg_srcB == W_dstM : W_valM; # forward pre-writeback
 	1 : reg_outputB; # returned by register file based on reg_srcA
 ];
