@@ -34,7 +34,7 @@ cmovg_pos_pass.yo
 cmovge_neg_fail.yo
 cmovge_pos_pass.yo
 cmovge_zero_pass.yo
-cmovl_neg_pass.yo+
+cmovl_neg_pass.yo
 cmovl_pos_fail.yo
 cmovle_neg_pass.yo
 cmovle_pos_fail.yo

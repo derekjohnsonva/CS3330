@@ -87,11 +87,11 @@ test-pipelab1: test-check
 
 test-pipelab2: test-check
 	@echo "Running pipelab2.hcl tests (rmmovq/mrmovq/halt)"
-	python3 testing_tool.py test pipelab2.hcl testdata/pipelab2-tests.txt testdata/pipe-reference
+	python3 testing_tool.py test pipehw2.hcl testdata/pipelab2-tests.txt testdata/pipe-reference
 
 test-pipehw1: test-check
 	@echo "Running pipehw1.hcl tests (nop/halt/irmovq/rrmovq/OPq/cmovXX)"
-	python3 testing_tool.py test pipehw1.hcl testdata/pipehw1-tests.txt testdata/pipe-reference
+	python3 testing_tool.py test pipehw2.hcl testdata/pipehw1-tests.txt testdata/pipe-reference
 
 test-pipehw2: test-pipehw2-stack
 

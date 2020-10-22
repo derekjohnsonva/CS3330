@@ -1,6 +1,6 @@
 
 ########## Fetch #############
-    ## cC is the register for condition codes ##
+## cC is the register for condition codes ##
 register cC {
     SF:1 = 0;
     ZF:1 = 1;

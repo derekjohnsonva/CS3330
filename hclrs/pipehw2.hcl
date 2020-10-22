@@ -5,8 +5,13 @@ register fF { predPC:64 = 0; }
 
 
 ########## Fetch #############
-pc = F_predPC;
 
+## Select PC ##
+pc = [
+    M_icode in {JXX} && !M_Cnd : M_valA;
+    W_icode == RET : W_valM;
+    1 : F_predPC;
+];
 wire icode:4, rA:4, rB:4, valC:64;
 
 icode = i10bytes[4..8];
@@ -25,9 +30,13 @@ offset = [
 	icode in { JXX, CALL } : 9;
 	1 : 10;
 ];
-valP = F_predPC + offset;
+valP = [
+    M_icode in {JXX} && !M_Cnd : M_valA + offset;
+    1 : F_predPC + offset;
+];
 f_predPC = [
-    icode in {JXX} : valC;
+    icode in {JXX, CALL} : valC;
+    W_icode == RET : W_valM;
     1 : valP;
 ];
 
@@ -62,28 +71,30 @@ register fD {
 
 
 reg_srcA = [ # send to register file as read port; creates reg_outputA
-	D_icode in {CMOVXX, OPQ, RMMOVQ} : D_rA;
+	D_icode in {CMOVXX, OPQ, RMMOVQ, PUSHQ} : D_rA;
 	1 : REG_NONE;
 ];
 reg_srcB = [ # send to register file as read port; creates reg_outputB
 	D_icode in {RMMOVQ, OPQ, MRMOVQ} : D_rB;
+    D_icode in {PUSHQ, POPQ, CALL, RET} : REG_RSP;
 	1 : REG_NONE;
 ];
 
 d_dstE = [
     D_icode in {IRMOVQ, CMOVXX, OPQ} : D_rB;
+    D_icode in {POPQ, PUSHQ, CALL, RET} : REG_RSP;
     1 : REG_NONE;
 ];
 
 d_dstM = [
-	D_icode in { MRMOVQ } : D_rA;
+	D_icode in { MRMOVQ, POPQ } : D_rA;
 	1 : REG_NONE;
 ];
 
 ### Forwarding ###
 d_valA = [
-	reg_srcA == REG_NONE: 0;
     D_icode in {CALL, JXX} : D_valP;
+	reg_srcA == REG_NONE: 0;
     reg_srcA == e_dstE : e_valE;
 	reg_srcA == M_dstE : M_valE; # forward post-memory
 	reg_srcA == W_dstE : W_valE; # forward pre-writeback
@@ -94,7 +105,6 @@ d_valA = [
 d_valB = [
 	reg_srcB == REG_NONE: 0;
 	# forward from another phase
-    D_icode in {CALL, JXX} : D_valP;
     reg_srcB == e_dstE : e_valE;
 	reg_srcB == M_dstE : M_valE; # forward post-memory
 	reg_srcB == W_dstE : W_valE; # forward pre-writeback
@@ -109,7 +119,6 @@ d_stat = D_stat;
 d_icode = D_icode;
 d_ifun = D_ifun;
 d_valC = D_valC;
-
 ########## Execute #############
 
 register dE {
@@ -132,7 +141,9 @@ aluOut = [
 	E_icode == OPQ && E_ifun == SUBQ : E_valB - E_valA;
 	E_icode == OPQ && E_ifun == ANDQ : E_valB & E_valA;
 	E_icode == OPQ && E_ifun == XORQ : E_valB ^ E_valA;
-    E_icode in { RMMOVQ, MRMOVQ } : E_valC + E_valB;
+    E_icode in { RMMOVQ, MRMOVQ }    : E_valC + E_valB;
+    E_icode in {PUSHQ, CALL}		 : E_valB - 8;
+	E_icode in {POPQ, RET}		     : E_valB + 8;
     1 : 0xBADBADBAD;
 ];
 
@@ -162,31 +173,34 @@ e_valE = aluOut;
 
 e_stat =  E_stat;
 e_icode = E_icode;
-e_valA = E_valA;
+e_valA = [
+    E_icode in {PUSHQ, POPQ, CALL, JXX} : E_valA;
+    1: E_valA;
+];
 e_dstM = E_dstM;
-e_cndSf = c_SF;
-e_cndZf = c_ZF;
+e_Cnd = conditionsMet;
 ########## Memory #############
 
 register eM {
 	stat:3 = STAT_BUB;
 	icode:4 = NOP;
-    cndSf:1 = 0;
-    cndZf:1 = 1;
+    Cnd:1 = 0;
 	valE:64 = 0;
 	valA:64 = 0;
 	dstM:4 = REG_NONE;
     dstE:4 = REG_NONE;
 }
 
-
 mem_addr = [ # output to memory system
-	M_icode in { RMMOVQ, MRMOVQ } : M_valE;
+	M_icode in { RMMOVQ, MRMOVQ, PUSHQ } : M_valE;
+    M_icode in {POPQ, RET} : M_valE - 8;
 	1 : 0; # Other instructions don't need address
 ];
-mem_readbit =  M_icode in { MRMOVQ }; # output to memory system
-mem_writebit = M_icode in { RMMOVQ }; # output to memory system
-mem_input = M_valA;
+mem_readbit =  M_icode in { MRMOVQ, POPQ, RET }; # output to memory system
+mem_writebit = M_icode in { RMMOVQ, PUSHQ, CALL }; # output to memory system
+mem_input = [
+    1 : M_valA;
+];
 
 m_stat = M_stat;
 m_valM = mem_output; # input from mem_readbit and mem_addr
@@ -222,18 +236,25 @@ register cC {
     ZF:1 = 1;
 }
 
-wire loadUse:1;
+wire loadUse:1, isRet:1;
 
 loadUse = (E_icode in {MRMOVQ}) && (E_dstM in {reg_srcA, reg_srcB}); 
-
+isRet = RET in {D_icode, E_icode, M_icode};
 ### Fetch
-stall_F = loadUse || f_stat != STAT_AOK;
+stall_F = loadUse || f_stat != STAT_AOK || isRet;
 
 ### Decode
 stall_D = loadUse;
+bubble_D = 
+    # mispredicted branch
+    (E_icode == JXX && !e_Cnd);
 
 ### Execute
-bubble_E = loadUse;
+bubble_E = 
+    # mispredicted branch
+    (E_icode == JXX && !e_Cnd) ||
+    # conditions for a load/use hazard
+    loadUse;
 
 ### Memory
 
