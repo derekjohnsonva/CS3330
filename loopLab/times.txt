@@ -1,0 +1,18 @@
+Cycles/Element for sum_simple
+1048576       0.89
+
+ Cycles/Element for sum_unrolled2:
+1048576       0.70
+
+Cycles/Element for sum_unrolled4
+1048576       0.70
+
+Cycles/Element for sum_multiple_accum
+1048576       0.55
+
+Cycles/Element for sum_multiple_accum_C
+1048576       0.55
+
+
+
+
