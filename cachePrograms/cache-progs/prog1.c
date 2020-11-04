@@ -37,8 +37,8 @@ void prevent_optimizations_based_on_knowing_array_values() {
 }
 
 int main() {
-    const int MAX = 1048568;
-    const int SKIP = 4;
+    const int MAX = 30* 1024 / 4;
+    const int SKIP = 16; 
     const int ITERS = 64000000;
     for (int i = 0; i < MAX; ++i) {
         global_array[i] = (i+SKIP) % (MAX);
