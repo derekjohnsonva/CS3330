@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "defs.h"
 #include <immintrin.h>
+#include <smmintrin.h>
 
 /* 
  * Please fill in the following team struct 
